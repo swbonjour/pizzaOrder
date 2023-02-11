@@ -17,7 +17,8 @@ export async function register(req: Request, res: Response) {
         })
 
         if(userExists) {
-            throw new Error();
+            responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'The user is already exists' })
+            return
         }
 
         const user = new User()
@@ -29,9 +30,20 @@ export async function register(req: Request, res: Response) {
 
         await AppDataSource.mongoManager.save(user);
 
-        responseHelper.completedRequest(res, { statusCode: 200, method: 'POST', payload: user})
+        const createdUser = await AppDataSource.mongoManager.findOneBy(User, {
+            username: data.username
+        })
+
+        if(createdUser) {
+            const token = jwt.sign({
+                username: data.username,
+                userID: createdUser.id
+            }, JWT_SECRET, {expiresIn: 60 * 60})     
+            responseHelper.completedRequest(res, { statusCode: 200, method: 'POST', payload: { user: user, token: `Bearer ${token}` }})
+        }
+
     } catch(err) {
-        responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'Something went wrong trying to create user. Probably the user is already exists'})
+        responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'Something went wrong trying to create user'})
     }
 }
 

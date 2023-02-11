@@ -9,6 +9,8 @@ import { AppLoginComponent } from './components/app-auth/app-login/app-login.com
 import { AppRegisterComponent } from './components/app-auth/app-register/app-register.component';
 import { AppListComponent } from './components/app-list/app-list.component';
 import { AppListItemComponent } from './components/app-list/list-item/app-list-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AppListItemComponent } from './components/app-list/list-item/app-list-i
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

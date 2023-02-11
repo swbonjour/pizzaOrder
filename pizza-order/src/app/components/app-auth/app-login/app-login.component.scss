@@ -56,4 +56,9 @@
             }
         }
     }
+
+    &_error {
+        color: white;
+        font-size: calc(8px + 6 * (100vw / 1440));
+    }
 }

@@ -4,6 +4,7 @@
     background-color: white;
     padding: 1rem;
     border-radius: 25px;
+    min-width: 14.5rem;
     &_header {
         display: flex;
         gap: 1rem;
@@ -11,6 +12,7 @@
         &-img {
             width: 29px;
             height: auto;
+            border-radius: 50%;
         }
     }
 
@@ -39,6 +41,20 @@
 
         &-status {
             padding-top: 1rem;
+        }
+
+        &-change {
+            & p {
+                padding: 0.7rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background-color: rgb(211, 211, 211);
+                }
+            }
         }
     }
 

@@ -1,11 +1,11 @@
 <div class="list-item">
     <header class="list-item_header">
         <p>Orderer:</p>
-        <img src="../../../../assets/user.png" alt="user" class="list-item_header-img">
-        <p></p>
+        <img [src]="ordererImage" alt="user" class="list-item_header-img">
+        <p>{{ ordererName }}</p>
     </header>
 
-    <div class="list-item_text">
+    <div class="list-item_text" *ngIf="!isChangingStatus">
         <div class="list-item_text-titles">
             <p>PizzaName:</p>
             <p>Size:</p>
@@ -17,20 +17,28 @@
         </div>
 
         <div class="list-item_text-data">
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
+            <p>{{ pizzaName }}</p>
+            <p>{{ size }}</p>
+            <p>{{ dough }}</p>
+            <p>{{ sideboard }}</p>
+            <p>{{ toppings }}</p>
+            <p>{{ destination }}</p>
+            <p>{{ additional }}</p>
         </div>
     </div>
 
-    <p class="list-item_text-status">Status:</p>
+    <div class="list-item_text-change" *ngIf="isChangingStatus">
+        <p (click)="updateOrderStatus('Accepted')">Accepted</p>
+        <p (click)="updateOrderStatus('Cooking')">Cooking</p>
+        <p (click)="updateOrderStatus('Delivering')">Delivering</p>
+        <p (click)="updateOrderStatus('Delivered')">Delivered</p>
+        <p (click)="updateOrderStatus('Canceled')">Canceled</p>
+    </div>
+
+    <p class="list-item_text-status" *ngIf="!isChangingStatus">Status: {{ status }}</p>
 
     <div class="list-item_buttons">
-        <button class="list-item_buttons-change">Change Status</button>
-        <button class="list-item_buttons-chat">Chat</button>
+        <button class="list-item_buttons-change" (click)="selectStatus()">{{ !isChangingStatus ? 'Change Status' : 'Back'}}</button>
+        <button class="list-item_buttons-chat" *ngIf="!isChangingStatus">Chat</button>
     </div>
 </div>

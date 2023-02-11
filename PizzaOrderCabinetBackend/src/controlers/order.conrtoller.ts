@@ -51,12 +51,11 @@ export async function createOrder(req: Request, res: Response): Promise<Response
 
 export async function updateOrderStatus(req: Request, res: Response) {
     const payload = req.body;
-    console.log(payload);
 
     try {
         const order = await AppDataSource.mongoManager.findOneAndUpdate(Order, {
             //@ts-ignore
-            _id: new mongodb.ObjectId(payload.userID)
+            _id: new mongodb.ObjectId(payload.orderID)
         },
         {
             $set: { status: payload.status }
@@ -65,7 +64,7 @@ export async function updateOrderStatus(req: Request, res: Response) {
         if(order) {
             const updatedOrder = await AppDataSource.mongoManager.findOne(Order, {
                 //@ts-ignore
-                _id: new mongodb.ObjectId(payload.userID)
+                _id: new mongodb.ObjectId(payload.orderID)
             })
             responseHelper.completedRequest(res, { statusCode: 200, method: 'PUT', payload: updatedOrder || {} })
         } else {

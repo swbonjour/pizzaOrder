@@ -6,10 +6,7 @@
 
     <div class="list-wrapper">
         <div class="list_main">
-            <app-list-item></app-list-item>
-            <app-list-item></app-list-item>
-            <app-list-item></app-list-item>
-            <app-list-item></app-list-item>
+            <app-list-item *ngFor="let order of orders" [pizzaName]="order.name" [size]="order.size" [dough]="order.dough" [sideboard]="order.sideboard" [toppings]="order.topping" [destination]="order.destination" [additional]="order.additional" [status]="order.status" [orderID]="order.id" [ordererName]="order.profileName" [ordererImage]="order.profileImg" [ordererID]="order.profileID"></app-list-item>
         </div>
     </div>
 </div>
