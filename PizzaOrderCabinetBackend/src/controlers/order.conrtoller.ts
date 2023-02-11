@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../db/dbConnection";
 import { Order } from "../db/models/order.model";
 import { ResponseHelper } from "../utils/responseHandler";
+//@ts-ignore
+import * as mongodb from 'mongodb';
 
 const responseHelper = new ResponseHelper();
 
@@ -44,5 +46,33 @@ export async function createOrder(req: Request, res: Response): Promise<Response
         return responseHelper.completedRequest(res, { statusCode: 200, method: 'POST', payload: payload})
     } catch(err) {
         return responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'Error occured while creating order item'})
+    }
+}
+
+export async function updateOrderStatus(req: Request, res: Response) {
+    const payload = req.body;
+    console.log(payload);
+
+    try {
+        const order = await AppDataSource.mongoManager.findOneAndUpdate(Order, {
+            //@ts-ignore
+            _id: new mongodb.ObjectId(payload.userID)
+        },
+        {
+            $set: { status: payload.status }
+        })
+
+        if(order) {
+            const updatedOrder = await AppDataSource.mongoManager.findOne(Order, {
+                //@ts-ignore
+                _id: new mongodb.ObjectId(payload.userID)
+            })
+            responseHelper.completedRequest(res, { statusCode: 200, method: 'PUT', payload: updatedOrder || {} })
+        } else {
+            responseHelper.badRequest(res, { statusCode: 500, method: 'PUT', payload: 'There is no such order'})
+        }
+    } catch(err) {
+        console.log(err);
+        responseHelper.badRequest(res, { statusCode: 500, method: 'PUT', payload: 'Error occured trying to update status'})
     }
 }
