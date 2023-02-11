@@ -1,0 +1,81 @@
+@import 'src/styles/colors.scss';
+
+.list-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 25px;
+    &_header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        &-img {
+            width: 29px;
+            height: auto;
+        }
+    }
+
+    &_text {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-top: 1rem;
+
+        &-titles {
+            width: 50%;
+
+            & p {
+                padding-top: 0.2rem;
+            }
+        }
+
+        &-data {
+            width: 60%;
+            text-align: start;
+
+            & p {
+                padding-top: 0.2rem;
+            }
+        }
+
+        &-status {
+            padding-top: 1rem;
+        }
+    }
+
+    &_buttons {
+        padding-top: 1rem;
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+
+        &-change {
+            border: none;
+            background-color: $green;
+            padding: 1rem;
+            box-shadow: inset 0px -3px 7px rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: calc(8px + 4 * (100vw / 1440));
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #7bb82c;
+            }
+        }
+
+        &-chat {
+            border: none;
+            background-color: $blue;
+            padding: 1rem;
+            box-shadow: inset 0px -3px 7px rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: calc(8px + 4 * (100vw / 1440));
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #2d7ea0;
+            }
+        }
+    }
+}

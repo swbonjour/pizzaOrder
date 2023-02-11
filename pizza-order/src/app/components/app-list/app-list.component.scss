@@ -1,0 +1,41 @@
+@import 'src/styles/colors.scss';
+
+.list {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    &_header {
+        display: flex;
+        align-items: center;
+        padding-left: 4rem;
+        color: white;
+        font-size: calc(8px + 6 * (100vw / 1440));
+    }
+
+    &-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    &_main {
+        width: 40%;
+        height: 40rem;
+        background-color: $orange;
+        margin-top: 4rem;
+        border-radius: 25px;
+        box-shadow: 0px 5px 10px 8px #401E0B;
+        padding: 4rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

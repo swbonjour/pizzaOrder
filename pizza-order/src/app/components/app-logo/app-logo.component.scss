@@ -1,0 +1,9 @@
+@import 'src/styles/colors.scss';
+
+.logo {
+    background-color: $app-background-dark;
+    width: fit-content;
+    border-radius: 50%;
+    padding: 1rem;
+    font-size: calc(10px + 4 * (100vw / 1440));
+}

@@ -1,0 +1,15 @@
+<div class="auth">
+    <div class="auth-wrapper">
+        <div class="auth_data-side">
+            <app-logo></app-logo>
+            <p class="auth_data-side_logo-text">PizzaOrder Cabinet</p>
+            
+            <app-login *ngIf="isSigningIn" [isSigningIn]="isSigningIn" (isSigningInChange)="changeIsSigingIn($event)"></app-login>
+            <app-register *ngIf="!isSigningIn"></app-register>
+
+        </div>
+        <div class="auth_img-side">
+            <img src="../../assets/authImg.jpg" alt="pizza" class="auth_img-side_img">
+        </div>
+    </div>
+</div>
