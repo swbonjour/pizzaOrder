@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OrderService } from 'app/services/order.service';
+import { API_URL } from 'app/utils/globalVars';
+import axios from 'axios';
 
 @Component({
   selector: 'app-list-item',
@@ -30,10 +32,13 @@ export class AppListItemComponent {
   }
 
   updateOrderStatus(status: string) {
-    this.orderService.updateOrderStatus(this.orderID, status).subscribe(payload => {
+    this.orderService.updateOrderStatus(this.orderID, status).subscribe(async payload => {
       this.isChangingStatus = !this.isChangingStatus
       //@ts-ignore
       this.status = payload.payload.status
+      await axios.post(`${API_URL}/orders/notify`, {
+        text: `Status of your order is: ${this.status} <@${this.ordererID}>`
+      })
     })
   }
 }
