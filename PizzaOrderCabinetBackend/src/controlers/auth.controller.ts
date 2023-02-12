@@ -43,6 +43,7 @@ export async function register(req: Request, res: Response) {
         }
 
     } catch(err) {
+        console.log(err);
         responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'Something went wrong trying to create user'})
     }
 }

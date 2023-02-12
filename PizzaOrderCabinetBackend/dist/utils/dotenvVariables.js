@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SLACK_WEBHOOK = exports.JWT_SECRET = exports.API_URL = exports.DATABASE_NAME = exports.DATABASE_PORT = exports.DATABASE_HOST = exports.DATABASE_TYPE = exports.PORT = void 0;
+exports.SLACK_WEBHOOK = exports.JWT_SECRET = exports.API_URL = exports.DATABASE_USERNAME = exports.DATABASE_PASSWORD = exports.DATABASE_NAME = exports.DATABASE_PORT = exports.DATABASE_HOST = exports.DATABASE_TYPE = exports.PORT = void 0;
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 exports.PORT = Number(process.env.PORT) || 3000;
@@ -27,6 +27,8 @@ exports.DATABASE_TYPE = process.env.DATABASE_TYPE || '';
 exports.DATABASE_HOST = process.env.DATABASE_HOST || '';
 exports.DATABASE_PORT = Number(process.env.DATABASE_PORT) || 27017;
 exports.DATABASE_NAME = process.env.DATABASE_NAME || '';
+exports.DATABASE_PASSWORD = process.env.DATABASE_PASSWORD || '';
+exports.DATABASE_USERNAME = process.env.DATABASE_USERNAME || '';
 exports.API_URL = process.env.API_URL || '';
 exports.JWT_SECRET = process.env.JWT_SECRET || '';
 exports.SLACK_WEBHOOK = process.env.SLACK_WEBHOOK || '';

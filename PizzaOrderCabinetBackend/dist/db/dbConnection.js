@@ -16,8 +16,7 @@ const auth_model_1 = require("./models/auth.model");
 const order_model_1 = require("./models/order.model");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: dotenvVariables_1.DATABASE_TYPE,
-    host: dotenvVariables_1.DATABASE_HOST,
-    port: dotenvVariables_1.DATABASE_PORT,
+    url: 'mongodb://uaalwqosnlrenh9cjqtt:nmPGCiAznQ5lTuwuIWLy@n1-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017,n2-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017/btscznzchjwrz06?replicaSet=rs0',
     database: dotenvVariables_1.DATABASE_NAME,
     entities: [order_model_1.Order, auth_model_1.User],
     synchronize: true,
@@ -30,6 +29,7 @@ function DatabaseConnection() {
             console.log('Database Connected');
         })
             .catch((err) => {
+            console.log(err);
             console.log('Error occured in database connection');
         });
     });
