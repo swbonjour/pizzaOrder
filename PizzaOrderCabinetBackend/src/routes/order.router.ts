@@ -1,6 +1,6 @@
 import express from 'express'
 import passport from 'passport';
-import { createOrder, getAllOrders, updateOrderStatus } from '../controlers/order.conrtoller';
+import { createOrder, getAllOrders, notifyOrderStatus, updateOrderStatus } from '../controlers/order.conrtoller';
 import { API_URL } from '../utils/dotenvVariables';
 
 export const orderRouter = express.Router();
@@ -14,3 +14,5 @@ orderRouter.put(`${API_URL}/orders/update`, passport.authenticate('jwt', {sessio
 orderRouter.delete(`${API_URL}/orderse/delete`, (req, res) => {
     res.send('hell');
 })
+
+orderRouter.post(`${API_URL}/orders/notify`, notifyOrderStatus)

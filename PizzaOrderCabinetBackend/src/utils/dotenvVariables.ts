@@ -10,3 +10,5 @@ export const DATABASE_NAME: string = process.env.DATABASE_NAME || '';
 
 export const API_URL: string = process.env.API_URL || '';
 export const JWT_SECRET: string = process.env.JWT_SECRET || '';
+
+export const SLACK_WEBHOOK: string = process.env.SLACK_WEBHOOK || '';

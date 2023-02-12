@@ -4,6 +4,8 @@ import { Order } from "../db/models/order.model";
 import { ResponseHelper } from "../utils/responseHandler";
 //@ts-ignore
 import * as mongodb from 'mongodb';
+import axios from 'axios';
+import { SLACK_WEBHOOK } from "../utils/dotenvVariables";
 
 const responseHelper = new ResponseHelper();
 
@@ -73,5 +75,18 @@ export async function updateOrderStatus(req: Request, res: Response) {
     } catch(err) {
         console.log(err);
         responseHelper.badRequest(res, { statusCode: 500, method: 'PUT', payload: 'Error occured trying to update status'})
+    }
+}
+
+export async function notifyOrderStatus(req: Request, res: Response) {
+    const payload = req.body;
+
+    try {
+        await axios.post(SLACK_WEBHOOK, {
+            text: payload.text
+        })
+        responseHelper.completedRequest(res, { statusCode: 200, method: 'POST', payload: payload.text })
+    } catch {
+        responseHelper.badRequest(res, { statusCode: 500, method: 'POST', payload: 'Error occured trying to send status'})
     }
 }
